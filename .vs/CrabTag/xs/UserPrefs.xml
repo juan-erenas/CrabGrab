@@ -1,0 +1,43 @@
+﻿<Properties StartupConfiguration="{B9E34E86-9739-61DD-42EE-F3ED45BCFD16}|">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/DiceDisplay.cs">
+    <Files>
+      <File FileName="Assets/Scripts/GameManager.cs" Line="32" Column="11" />
+      <File FileName="Assets/Scripts/Movement.cs" Line="58" Column="38" />
+      <File FileName="Assets/Scripts/Player.cs" Line="61" Column="1" />
+      <File FileName="Assets/Scripts/WallManager.cs" Line="35" Column="21" />
+      <File FileName="Assets/Scripts/Room.cs" Line="288" Column="83" />
+      <File FileName="Assets/Scripts/DiceDisplay.cs" Line="28" Column="23" />
+      <File FileName="Assets/Scripts/InvisCollider.cs" Line="32" Column="6" />
+      <File FileName="Assets/Scripts/Die.cs" Line="19" Column="25" />
+      <File FileName="Assets/Scripts/DiceDisplay1.cs" Line="71" Column="2" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="CrabTag" expanded="True">
+            <Node name="Assets" expanded="True">
+              <Node name="Scripts" expanded="True">
+                <Node name="DiceDisplay.cs" selected="True" />
+              </Node>
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+      <Pad Id="MonoDevelop.Debugger.WatchPad">
+        <State />
+      </Pad>
+      <Pad Id="MonoDevelop.UnitTesting.TestPad">
+        <State name="__root__">
+          <Node name="Unity" selected="True" />
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="521c646a-7ca1-47ce-acbf-5f436b068b4b" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+</Properties>
