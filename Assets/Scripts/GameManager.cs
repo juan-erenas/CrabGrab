@@ -4,6 +4,7 @@ using UnityEngine;
 using System.Timers;
 using TMPro;
 using System;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -79,6 +80,8 @@ public class GameManager : MonoBehaviour
         var splat = Instantiate(Splat, PlayerOne.transform.position, Quaternion.identity);
         Destroy(PlayerOne.gameObject);
         _Room.StopCollapsing();
+
+        StartCoroutine(GoToDeadScene());
     }
 
     private void BuildRoom()
@@ -88,7 +91,7 @@ public class GameManager : MonoBehaviour
         _Room.PlayerExited += PlayerExited;
 
         _ShouldShrinkRoom = true;
-        _Room.MasterObject.transform.localScale = new Vector3(2.5f, 2.5f);
+        _Room.transform.localScale = new Vector3(2.5f, 2.5f);
 
         StartCoroutine(RollDice(1.2f));
     }
@@ -96,11 +99,11 @@ public class GameManager : MonoBehaviour
     private void ShrinkRoom()
     {
         float increment = 4f;
-        _Room.MasterObject.transform.localScale += new Vector3(- increment * Time.deltaTime, - increment * Time.deltaTime, 1);
+        _Room.transform.localScale += new Vector3(- increment * Time.deltaTime, - increment * Time.deltaTime, 1);
 
-        if (_Room.MasterObject.transform.localScale.x <= 1)
+        if (_Room.transform.localScale.x <= 1)
         {
-            _Room.MasterObject.transform.localScale = new Vector3(1, 1, 1);
+            _Room.transform.localScale = new Vector3(1, 1, 1);
             _ShouldShrinkRoom = false;
         }
     }
@@ -135,9 +138,9 @@ public class GameManager : MonoBehaviour
     private void SwipeRoom()
     {
         float swipeSpeed = 10f;
-        _Room.MasterObject.transform.position += new Vector3(0, - swipeSpeed * Time.deltaTime);
+        _Room.transform.position += new Vector3(0, - swipeSpeed * Time.deltaTime);
 
-        if (_Room.MasterObject.transform.position.y < - 6)
+        if (_Room.transform.position.y < - 6)
         {
             ReplaceRoom();
         }
@@ -145,12 +148,17 @@ public class GameManager : MonoBehaviour
 
     private void ReplaceRoom()
     {
-        Destroy(_Room.MasterObject);
-        Destroy(_Room);
+        Destroy(_Room.gameObject);
         _Room = null;
         _ShouldSwipeRoom = false;
         //Add to Score???
         BuildRoom();
+    }
+
+    private IEnumerator GoToDeadScene()
+    {
+        yield return new WaitForSeconds(1);
+        SceneManager.LoadScene("Dead", LoadSceneMode.Single);
     }
 
     //private IEnumerator ShowCountDown()

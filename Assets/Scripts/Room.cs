@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class Room : MonoBehaviour
 {
-    public GameObject MasterObject;
 
     [SerializeField] WallManager WallManager;
 
@@ -61,24 +60,23 @@ public class Room : MonoBehaviour
 
     public void GenerateRoom(float width, float height, RoomType roomType, int doorAmount)
     {
+        this.name = "roomObject";
         _Height = height;
         _Width = width;
         _NumOfDoors = doorAmount;
         _RoomType = roomType;
 
-        MasterObject = new GameObject();
-
-        BuildWalls();
+        InstantiateWalls();
         BuildCorners();
         BuildDice();
-        BuildUpperDoorsRoom(); //TODO Add other room types
+        BuildRoom(); //TODO Add other room types
         BuildDoorColliders();
         AssignWallSets();
         
         
     }
 
-    private void BuildWalls()
+    private void InstantiateWalls()
     {
         _SingleWalls = new Dictionary<string, WallManager>();
 
@@ -98,8 +96,9 @@ public class Room : MonoBehaviour
             if (wallsToAdd[i] == true)
             {
                 var newWall = Instantiate(WallManager, transform.position, Quaternion.identity);
+                newWall.name = wallsList[i] + "_wall";
                 _SingleWalls.Add(wallsList[i], newWall);
-                newWall.transform.SetParent(MasterObject.transform);
+                newWall.transform.SetParent(this.transform);
             }
         }
     }
@@ -117,11 +116,12 @@ public class Room : MonoBehaviour
         for (int i = 0; i < diceAboveLocations.Count; i ++)
         {
             var newDie = Instantiate(DiceDisplay, diceAboveLocations[i], Quaternion.identity);
+            newDie.name = $"Die_" + i.ToString();
             DiceAboveDoors.Add(newDie);
         }
 
         DiceBelow = Instantiate(DiceDisplay, diceBelowLocation, Quaternion.identity);
-        DiceBelow.transform.SetParent(MasterObject.transform);
+        DiceBelow.transform.SetParent(this.transform);
     }
 
     public void RollDice()
@@ -147,7 +147,6 @@ public class Room : MonoBehaviour
         var diceBelowValue = diceValues[RNG.Next(diceValues.Count)];
 
         DiceBelow.SetFinalDieValue(diceBelowValue);
-
     }
 
     private List<int> GetDiceValues(int amount)
@@ -280,7 +279,7 @@ public class Room : MonoBehaviour
         _LowerRightCorner = new Vector2(_Width / 2 + transform.position.x, -_Height / 2 + transform.position.y);
     }
 
-    private void BuildUpperDoorsRoom()
+    private void BuildRoom() //TODO Add functionality to make other room types with doors facing other directions
     {
         _SingleWalls["left"].SetSize(_Height + (_WallOffset * 2), WallWidth);
         _SingleWalls["left"].SetName("left");
@@ -302,6 +301,7 @@ public class Room : MonoBehaviour
         foreach(string key in _WallSets.Keys)
         {
             var newObject = Instantiate(new GameObject(), transform.position, Quaternion.identity);
+            newObject.name = "Upper_Walls";
 
             var walls = _WallSets[key];
 
@@ -321,16 +321,16 @@ public class Room : MonoBehaviour
             }
 
             _WallHolder.Add(key, newObject);
-            newObject.transform.SetParent(MasterObject.transform);
+            newObject.transform.SetParent(this.transform);
         }
     }
 
     private void SetWallPositions()
     {
-        _SingleWalls["left"].transform.localPosition = new Vector2(_LowerLeftCorner.x, _LowerLeftCorner.y - _WallOffset);
-        _SingleWalls["right"].transform.localPosition = new Vector2(_LowerRightCorner.x, _LowerRightCorner.y - _WallOffset);
-        //SingleWalls["upper"].transform.localPosition = _UpperLeftCorner;
-        _SingleWalls["lower"].transform.localPosition = new Vector2(_LowerLeftCorner.x - _WallOffset, _LowerLeftCorner.y);
+        _SingleWalls["left"].transform.position = new Vector2(_LowerLeftCorner.x, _LowerLeftCorner.y - _WallOffset);
+        _SingleWalls["right"].transform.position = new Vector2(_LowerRightCorner.x, _LowerRightCorner.y - _WallOffset);
+        //SingleWalls["upper"].transform.position = _UpperLeftCorner;
+        _SingleWalls["lower"].transform.position = new Vector2(_LowerLeftCorner.x - _WallOffset, _LowerLeftCorner.y);
     }
 
     private List<WallManager> BuildHWallWithDoors(int doorNum, float width, string name)
@@ -351,24 +351,6 @@ public class Room : MonoBehaviour
         SetHWallsPositions(walls, wallLength);
 
         return walls;
-    }
-
-    private List<WallManager> BuildVWallsWithDoors (int doorNum, float height)
-    {
-        var walls = new List<WallManager>();
-
-        int numOfWalls = doorNum + 1;
-        float wallLength = height - (doorNum * DoorWidth) / numOfWalls;
-
-        for (int i = 0; i < numOfWalls; i++)
-        {
-            var newWall = Instantiate(WallManager, new Vector3(0, 0, 0), Quaternion.identity);
-            newWall.SetSize(wallLength, WallWidth);
-            walls.Add(newWall);
-        }
-
-        return walls;
-
     }
 
     private void SetHWallsPositions(List<WallManager> walls, float wallLength)

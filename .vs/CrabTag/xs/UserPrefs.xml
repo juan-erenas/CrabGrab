@@ -1,15 +1,17 @@
 ﻿<Properties StartupConfiguration="{B9E34E86-9739-61DD-42EE-F3ED45BCFD16}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/DiceDisplay.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/DeadMenu.cs">
     <Files>
-      <File FileName="Assets/Scripts/GameManager.cs" Line="32" Column="11" />
-      <File FileName="Assets/Scripts/Movement.cs" Line="58" Column="38" />
-      <File FileName="Assets/Scripts/Player.cs" Line="61" Column="1" />
+      <File FileName="Assets/Scripts/GameManager.cs" Line="161" Column="37" />
+      <File FileName="Assets/Scripts/Movement.cs" Line="62" Column="57" />
+      <File FileName="Assets/Scripts/Player.cs" Line="2" Column="34" />
       <File FileName="Assets/Scripts/WallManager.cs" Line="35" Column="21" />
-      <File FileName="Assets/Scripts/Room.cs" Line="288" Column="83" />
-      <File FileName="Assets/Scripts/DiceDisplay.cs" Line="28" Column="23" />
-      <File FileName="Assets/Scripts/InvisCollider.cs" Line="32" Column="6" />
-      <File FileName="Assets/Scripts/Die.cs" Line="19" Column="25" />
-      <File FileName="Assets/Scripts/DiceDisplay1.cs" Line="71" Column="2" />
+      <File FileName="Assets/Scripts/Room.cs" Line="333" Column="49" />
+      <File FileName="Assets/Scripts/DiceDisplay.cs" Line="7" Column="2" />
+      <File FileName="Assets/Scripts/InvisCollider.cs" Line="9" Column="20" />
+      <File FileName="Assets/Scripts/Die.cs" Line="47" Column="1" />
+      <File FileName="Assets/Scripts/IntroCrab.cs" Line="50" Column="71" />
+      <File FileName="Assets/Scripts/RoomType.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/DeadMenu.cs" Line="18" Column="6" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -17,7 +19,7 @@
           <Node name="CrabTag" expanded="True">
             <Node name="Assets" expanded="True">
               <Node name="Scripts" expanded="True">
-                <Node name="DiceDisplay.cs" selected="True" />
+                <Node name="DeadMenu.cs" selected="True" />
               </Node>
             </Node>
           </Node>
@@ -33,11 +35,13 @@
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
-  <MultiItemStartupConfigurations />
-  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="521c646a-7ca1-47ce-acbf-5f436b068b4b" />
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="58cc954b-3178-44d5-a908-aa132ca67784" />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
+    <BreakpointStore>
+      <Breakpoint file="/Users/juanerenas/Repos/Unity2D/CrabTag/Assets/Scripts/GameManager.cs" relfile="Assets/Scripts/GameManager.cs" line="155" column="1" />
+    </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MultiItemStartupConfigurations />
 </Properties>
